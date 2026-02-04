@@ -49,9 +49,9 @@ impl<'info> ThawNft<'info> {
 
     pub fn thaw_nft(&mut self) -> Result<()> {
 
-        let pubkey = self.collection.key();
+        //let pubkey = self.collection.key();
 
-        let signer_seeds: &[&[&[u8]]] = &[&[b"collection_authority", pubkey.as_ref(), &[self.collection_authority.bump]]];
+        let signer_seeds: &[&[&[u8]]] = &[&[b"collection_authority", &self.collection.key().to_bytes(), &[self.collection_authority.bump]]];
 
 
         UpdatePluginV1CpiBuilder::new(&self.core_program.to_account_info())

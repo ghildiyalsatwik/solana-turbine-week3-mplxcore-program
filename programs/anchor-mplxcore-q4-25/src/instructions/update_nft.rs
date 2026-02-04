@@ -34,9 +34,9 @@ impl<'info> UpdateNft<'info> {
 
     pub fn update_nft(&mut self, new_name: String) -> Result<()> {
 
-        let pubkey = self.collection.key();
+        //let pubkey = self.collection.key();
 
-        let signer_seeds: &[&[&[u8]]] = &[&[b"collection_authority", pubkey.as_ref(), &[self.collection_authority.bump]]];
+        let signer_seeds: &[&[&[u8]]] = &[&[b"collection_authority", &self.collection.key().to_bytes(), &[self.collection_authority.bump]]];
 
         UpdateV1CpiBuilder::new(&self.core_program.to_account_info())
         .asset(&self.asset.to_account_info())

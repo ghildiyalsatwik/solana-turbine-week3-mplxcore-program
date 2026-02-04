@@ -305,7 +305,7 @@ describe("anchor-mplxcore-q4-25", () => {
 
   describe("Update NFT", () => {
 
-    it("Updates name and uri of NFT", async () => {
+    it("Updates name of NFT", async () => {
       
       const newName = "Updated NFT";
 
@@ -344,7 +344,7 @@ describe("anchor-mplxcore-q4-25", () => {
       } catch (err) {
         assert.equal(err.error.errorCode.code, "NotAuthorized", "Expected NotAuthorized error");
       }
-      
+
     });
 
   });
