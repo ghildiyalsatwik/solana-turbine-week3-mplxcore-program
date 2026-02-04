@@ -302,4 +302,20 @@ describe("anchor-mplxcore-q4-25", () => {
       }
     });
   });
+
+  describe("Update NFT", () => {
+
+    it("Updates name and uri of NFT", async () => {
+      
+      const newName = "Updated NFT";
+    });
+
+    it("Throws error on invalid authority", async () => {
+
+      const newName = "Updated NFT";
+
+    });
+
+  });
+
 });

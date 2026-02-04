@@ -11,4 +11,4 @@ pub use create_collection::*;
 pub use mint_nft::*;
 pub use freeze_nft::*;
 pub use thaw_nft::*;
-// pub use update_nft::*;
+pub use update_nft::*;
