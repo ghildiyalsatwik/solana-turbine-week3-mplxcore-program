@@ -47,7 +47,6 @@ impl<'info> UpdateNft<'info> {
         .system_program(&self.system_program.to_account_info())
         .invoke_signed(signer_seeds)?;
 
-
         self.collection_authority.nft_name = new_name;
 
         Ok(())

@@ -308,12 +308,43 @@ describe("anchor-mplxcore-q4-25", () => {
     it("Updates name and uri of NFT", async () => {
       
       const newName = "Updated NFT";
+
+      await program.methods
+        .updateNft(newName)
+        .accountsStrict({
+          authority: creator.publicKey,
+          asset: asset.publicKey,
+          collection: collection.publicKey,
+          collectionAuthority: collectionAuthorityPda,
+          coreProgram: MPL_CORE_PROGRAM_ID,
+          systemProgram: SystemProgram.programId,
+        })
+        .signers([creator])
+        .rpc();
     });
 
     it("Throws error on invalid authority", async () => {
 
       const newName = "Updated NFT";
 
+      try {
+        await program.methods
+          .updateNft(newName)
+          .accountsStrict({
+            authority: unauthorizedAuthority.publicKey,
+            asset: asset.publicKey,
+            collection: collection.publicKey,
+            collectionAuthority: collectionAuthorityPda,
+            coreProgram: MPL_CORE_PROGRAM_ID,
+            systemProgram: SystemProgram.programId,
+          })
+          .signers([unauthorizedAuthority])
+          .rpc();
+        assert.fail("Should have failed with unauthorized authority");
+      } catch (err) {
+        assert.equal(err.error.errorCode.code, "NotAuthorized", "Expected NotAuthorized error");
+      }
+      
     });
 
   });
